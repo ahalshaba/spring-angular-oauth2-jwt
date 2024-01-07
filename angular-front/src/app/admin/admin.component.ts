@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,23 @@ import { Component } from '@angular/core';
 })
 export class AdminComponent {
 
+  constructor(private http: HttpClient){
+
+  }
+  helloAdmin!: any;
+  ngOnInit(): void {
+    this.http.get("http://localhost:8181/api/hello_admin")
+    .subscribe({
+      next: data=>{
+        
+        this.helloAdmin = data;
+        
+        
+      },
+      error: err => {
+        
+        console.log(err);
+      }
+    });
+  }
 }
