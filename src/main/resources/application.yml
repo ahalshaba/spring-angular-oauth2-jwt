@@ -1,0 +1,12 @@
+server:
+  port: 8181
+spring:
+  application:
+    name: oauth2-service
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/ahal-realm
+          jwk-set-uri: http://localhost:8080/realms/ahal-realm/protocol/openid-connect/certs 
+
