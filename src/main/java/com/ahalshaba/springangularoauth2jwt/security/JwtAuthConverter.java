@@ -29,12 +29,13 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
     }
     private Collection<GrantedAuthority> extractResourceRoles(Jwt jwt) {
         Map<String,Object> realmAccess;
-        Collection<String> roles;
+       
         if(jwt.getClaim("realm_access")==null){
             return Set.of();
         }
         realmAccess = jwt.getClaim("realm_access");
-        roles = (Collection<String>)realmAccess.get("roles");
+        @SuppressWarnings("unchecked")
+        Collection<String> roles = (Collection<String>)realmAccess.get("roles");
         return roles.stream().map(role-> new SimpleGrantedAuthority(role)).collect(Collectors.toSet());
         
     }
