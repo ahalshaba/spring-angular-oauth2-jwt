@@ -45,7 +45,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
        
         return http
-                    .cors(Customizer.withDefaults())
+                    //.cors(Customizer.withDefaults())
                     .authorizeHttpRequests(ar->ar.anyRequest().authenticated())
                     .oauth2ResourceServer(o2->o2.jwt(jwt-> jwt.jwtAuthenticationConverter(jwtAuthConverter)))
                     .build();
@@ -54,14 +54,15 @@ public class SecurityConfig {
      * configure cors for authoriation urls and methods
      * @return
      */
+    /*
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200/*","https://example.com"));
+        configuration.setAllowedOrigins(Arrays.asList("/**","*"));
         configuration.setAllowedMethods(Arrays.asList("*"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
-    }
+    }*/
 
 }
